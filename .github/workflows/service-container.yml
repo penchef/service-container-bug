@@ -1,0 +1,18 @@
+name: Run docker server
+on:
+  push:
+jobs:
+  build:
+    name: Service Container example
+    runs-on: ubuntu-20.04
+    services:
+      mongodb:
+        env: ${{ fromJSON(secrets.BAR) }}
+        options: ${{ secrets.FOO }}
+        image: mongo:5.0.14
+        ports:
+          - 27017:27017
+    steps:
+      - name: ping
+        run: |
+          echo "not working"
