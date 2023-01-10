@@ -5,13 +5,13 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      container_env: ${{ steps.set-container_env.outputs.container_env }}
-      container_options: ${{ steps.set-container_env.outputs.container_options }}
+      container_env: ${{ steps.container_env.outputs.container_env }}
+      container_options: ${{ steps.container_env.outputs.container_options }}
     steps:
       - name: Set output
         id: container_env
         run: |
-          echo "container_env=\{\"FOO\":\"bar\"\}" >> $GITHUB_OUTPUT
+          echo "container_env={\"foo\":\"bar\"}" >> $GITHUB_OUTPUT
           echo "container_options=\"-e FOO=bar\" }" >> $GITHUB_OUTPUT
 
   build:
