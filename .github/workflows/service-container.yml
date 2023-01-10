@@ -5,10 +5,13 @@ jobs:
   build:
     name: Service Container example
     runs-on: ubuntu-20.04
+    env:
+      secret_env: ${{ fromJSON(secrets.BAR) }}
+      secret_options: ${{ secrets.FOO }}
     services:
       mongodb:
-        env: ${{ fromJSON(secrets.BAR) }}
-        options: ${{ secrets.FOO }}
+        env: ${{ env.secret_env}}
+        options: ${{ env.secret_options}}
         image: mongo:5.0.14
         ports:
           - 27017:27017
