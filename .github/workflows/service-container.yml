@@ -1,4 +1,4 @@
-name: Run docker server
+name: Run container
 on:
   push:
 jobs:
