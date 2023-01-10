@@ -2,20 +2,31 @@ name: Run container
 on:
   push:
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      container_env: ${{ steps.set-container_env.outputs.container_env }}
+    steps:
+      - name: Set output
+        id: container_env
+        run: |
+          echo "container_env={\"FOO\":\"bar\" }" >> $GITHUB_OUTPUT
+
   build:
     name: Service Container example
     runs-on: ubuntu-20.04
+    needs: setup
     env:
       secret_env: ${{ fromJSON(secrets.BAR) }}
       secret_options: ${{ secrets.FOO }}
     services:
       mongodb:
-        env: >
-          {
-            "FOO": "bar"
-          }
-       # ${{ secret_env }}
-        # options: ${{ env.secret_options }}
+      #   env: >
+      #     {
+      #       "FOO": "bar"
+      #     }
+      #  # ${{ secret_env }}
+        options: ${{ env.secret_options }}
         image: mongo:5.0.14
         ports:
           - 27017:27017
