@@ -12,7 +12,7 @@ jobs:
         id: container_env
         run: |
           echo "container_env={\"foo\":\"bar\"}" >> $GITHUB_OUTPUT
-          echo "container_options=\"-e FOO=bar\" >> $GITHUB_OUTPUT
+          echo "container_options=\"-e FOO=bar\"" >> $GITHUB_OUTPUT
 
   build:
     name: Service Container example
