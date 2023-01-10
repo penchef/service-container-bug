@@ -10,8 +10,12 @@ jobs:
       secret_options: ${{ secrets.FOO }}
     services:
       mongodb:
-        env: ${{ env.secret_env}}
-        options: ${{ env.secret_options}}
+        env: >
+          {
+            "FOO": "bar"
+          }
+       # ${{ secret_env }}
+        # options: ${{ env.secret_options }}
         image: mongo:5.0.14
         ports:
           - 27017:27017
