@@ -20,8 +20,8 @@ jobs:
     needs: setup
     services:
       mongodb:
-        env: ${{ fromJSON(needs.setup.outputs.container_env) }}
-        options: ${{ needs.setup.outputs.container_options }}
+        env:
+          FOO: ${{ secrets.BAR }}
         image: mongo:5.0.14
         ports:
           - 27017:27017
