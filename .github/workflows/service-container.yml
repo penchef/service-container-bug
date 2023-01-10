@@ -11,7 +11,7 @@ jobs:
       - name: Set output
         id: container_env
         run: |
-          echo "container_env={\"FOO\":\"bar\" }" >> $GITHUB_OUTPUT
+          echo "container_env=\{\"FOO\":\"bar\"\}" >> $GITHUB_OUTPUT
           echo "container_options=\"-e FOO=bar\" }" >> $GITHUB_OUTPUT
 
   build:
